@@ -1,0 +1,227 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<html>
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-146742162-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-146742162-1');
+		</script>
+	<title>
+		WaveMaker
+	</title>
+<style>
+body{ 
+
+font-family: 'Helvetica';
+font-size: 18px;
+color: #000; 
+letter-spacing: 1px;
+line-height: 1.5;
+background-color: #F5F5F5;
+
+}
+
+#header{
+font-family: 'Helvetica';
+color: #242424;
+font-size: 80px;
+letter-spacing: 1.6px;
+margin-left: 10px;
+line-height: 10px;
+}
+
+#creds{
+font-family: 'Helvetica';
+color: #242424;
+font-size: 30px;
+letter-spacing: 1.6px;
+margin-left: 15px;
+line-height: 10px;
+}
+
+svg {
+	width: 600px;
+	height: 400px;
+}
+
+path {
+	stroke: black;
+	stroke-width: 3px;
+	stroke-linecap: round;
+	fill: none;
+}
+
+.slider{
+	-webkit-appearance: none;
+	width:200px;
+	height:12px;
+	background: #B9B9B9;
+	outline:none;
+	opacity:0.7;
+	-webkit-transition: 0.2s;
+	transition: opacity .2s;
+}
+
+.slider:hover{
+	opacity: 1;
+}
+
+.slider::-webkit-slider-thumb{
+	-webkit-appearance: none;
+	width:12px;
+	height:12px;
+	background: black;
+}
+
+.slider::-moz-range-thumb{
+	width:12px;
+	height:12px;
+	background: #0A0A0A;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.checkSlider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .checkSlider {
+  background-color: #2196F3;
+}
+
+input:focus + .checkSlider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .checkSlider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+a{
+	text-decoration: none;
+	-webkit-transition: 0.2s;
+	transition: color .2s;
+}
+a:link{
+	color: #4589CA;
+}
+a:visited{
+	color: #4589CA;
+}
+a:visited:hover{
+	color: #D2D2D2;
+}
+a:hover{
+	color:#D2D2D2;
+}
+
+.links{
+	font: 'Helvetica Light';
+	font-size: 30px;
+	font-weight: 100;
+}
+.footlinks{
+	font: 'Helvetica Light';
+	font-size: 20px;
+	font-weight: 100;
+}
+
+</style>
+
+</head>
+
+<body id="pageBody">
+
+<p id="header">WaveMaker</p>
+<p id="creds">by Paul Tisch &copy; 2019</p>
+<br>
+
+<svg>
+	<path d="M10,10 L50,100 L90,50" id="thePath"></path>
+</svg>
+
+<br>
+Sound:
+<label class="switch">
+	<input type="checkbox" onchange=makeSound()>
+		<span class=checkSlider></span>
+</label>
+<br>
+Speed:
+<input class="slider" name="speed" id="speed" type="range" min="-10000.0" max="10000.0" step="0.001" value="500.0" list="steplist"/><br>
+
+<br>
+<p id="waveLabel">Wave 1:</p>
+
+Frequency: 
+<input class="slider" name="freq" id="freq" type="range" min="0.00001" max="0.1" step="0.0000001" value="0.005" /><br>
+Amplitude:
+<input class="slider" name="amplitude" id="amplitude" type="range" min="0.0" max="200.0" step="0.001" value="50.0" /><br>
+Wavelength:
+<input class="slider" name="wavelength" id="wavelength" type="range" min="0.01" max="10000.0" step="0.0001" value="10.0" /><br>
+Phase:
+<input class="slider" name="phase" id="phase" type="range" min="-10.0" max="10.0" step="0.0001" value="0.0" /><br>
+
+
+<p id="waveLabel">Wave 2:</p>
+
+Frequency: 
+<input class="slider" name="freq" id="freq2" type="range" min="0.00001" max="0.1" step="0.0000001" value="0.01" /><br>
+Amplitude:
+<input class="slider" name="amplitude" id="amplitude2" type="range" min="0.0" max="200.0" step="0.001" value="10.0" /><br>
+Wavelength:
+<input class="slider" name="wavelength" id="wavelength2" type="range" min="0.01" max="10000.0" step="0.0001" value="100.0" /><br>
+Phase:
+<input class="slider" name="phase" id="phase2" type="range" min="-10.0" max="10.0" step="0.0001" value="0.0" /><br>
+
+<br>
+<br>
+Line width:
+<input class="slider" name="width" id="width" type="range" min="0.01" max="20.0" step="0.001" value="3.0" /><br>
+
+<script src="wavemaker.js"></script>
+	<br><br><br><br>
+	<a href="webDesign.html" class="footlinks">Back to Web Design</a><br><br>
+	<a href="index.html" class="footlinks">Home</a>
+</body>
+</html>
